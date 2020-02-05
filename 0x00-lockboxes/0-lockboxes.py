@@ -17,4 +17,6 @@ def canUnlockAll(boxes):
              and not unlocked[key]:
                 unlocked[key] = True
                 box_to_check.append(key)
-    return all(unlocked)
+            if (all(unlocked) == True):
+                return True
+    return False
