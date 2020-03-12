@@ -10,7 +10,7 @@ int is_palindrome(listint_t **head)
 	listint_t *slow = NULL;
 	listint_t *fast = NULL;
 
-	if (!head || !*head)
+	if (!head || !*head || !(*head)->next)
 		return (1);
 
 	slow = *head;
