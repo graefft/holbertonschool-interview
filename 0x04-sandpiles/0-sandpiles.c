@@ -53,7 +53,7 @@ void topple_sandpile(int grid1[3][3], int grid2[3][3])
 	int i, j;
 
 	printf("=\n");
-	print_grid(grid1);
+	print_sand(grid1);
 
 	for (i = 0; i < 3; i++)
 	{
@@ -76,10 +76,10 @@ void topple_sandpile(int grid1[3][3], int grid2[3][3])
 }
 
 /**
- * print_grid - prints grid at current state
+ * print_sand - prints grid at current state
  * @grid: grid to print
  */
-void print_grid(int grid[3][3])
+void print_sand(int grid[3][3])
 {
 	int i, j;
 
