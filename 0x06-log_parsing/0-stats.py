@@ -7,7 +7,7 @@ import sys
 if __name__ == '__main__':
 
     def print_stats():
-        '''Prints total File Size and number of lines of each valid status code'''
+        '''Prints total File Size and number of lines of each status code'''
         print("File size: {}".format(total_size))
         for code in sorted(codes.keys()):
             if codes[code]:
@@ -23,11 +23,11 @@ if __name__ == '__main__':
             count += 1
             data = line.split()
             try:
-                total_size += int(data[-1]) # Add last column (file_size)
+                total_size += int(data[-1])  # Add last column (file_size)
             except:
                 pass
             try:
-                status_code = data[-2]      # Check for status code 2nd column to right
+                status_code = data[-2]       # Check for status code
                 if status_code in codes:
                     codes[status_code] += 1
             except:
