@@ -30,36 +30,37 @@ int slide_line(int *line, size_t size, int direction)
  */
 void slide_left(int *line, size_t size)
 {
-	int lo = 0;
-	int hi = 0;
-	int value = 0;
+	int i = 0;
+	int j = 0;
+	int prev = line[0];
 
-	for (hi = 1; hi < (int)size; hi++)
+	for (j = 1; j < (int)size; j++)
 	{
-		if (line[hi])
+		if (line[j])
 		{
-			if (!value)
-				value = line[hi];
-			if (value == line[hi])
+			if (!prev)
+				prev = line[j];
+			else if (line[j] == prev)
 			{
-				line[lo] = value * 2;
-				printf("LO = [%d]\n", line[lo]);
-				value = 0;
+				line[i] = prev * 2;
+				i++;
+				prev = 0;
 			}
 			else
 			{
-				line[lo] = value;
-				value = line[hi];
+				line[i] = prev;
+				i++;
+				prev = line[j];
 			}
-		lo++;
 		}
 	}
-	if (value)
-		line[lo] = value;
-	while (lo < (int)size)
+	if (prev)
+		line[i++] = prev;
+
+	while (i < (int)size)
 	{
-		line[lo] = 0;
-		lo++;
+		line[i] = 0;
+		i++;
 	}
 }
 
@@ -72,25 +73,36 @@ void slide_left(int *line, size_t size)
  */
 void slide_right(int *line, size_t size)
 {
-	int lo = 0;
-	int hi = 0;
-	int value = 0;
+	int i = 0;
+	int j = size - 1;
+	int prev = line[i];
 
-	hi = size - 1;
-	value = line[hi];
-	for (lo = size - 2; lo >= 0; lo--)
+	for (i = size - 2; i >= 0; i--)
 	{
-		if (value == line[lo])
+		if (line[i])
 		{
-			line[hi] = value * 2;
-			value = 0;
-		}
-		else
-		{
-			line[hi] = value;
-			value = line[lo];
+			if (!prev)
+				prev = line[i];
+			else if (prev == line[i])
+			{
+				line[j] = prev * 2;
+				j--;
+				prev = 0;
+			}
+			else
+			{
+				line[j] = prev;
+				j--;
+				prev = line[i];
+			}
 		}
 	}
-	if (value)
-		line[hi] = value;
+	if (prev)
+		line[j--] = prev;
+
+	while (j >= 0)
+	{
+		line[j] = 0;
+		j--;
+	}
 }
