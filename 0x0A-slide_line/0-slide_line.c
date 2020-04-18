@@ -23,44 +23,43 @@ int slide_line(int *line, size_t size, int direction)
 
 /**
  * slide_left - slides array to the left
- *
  * @line: array of integers
  * @size: size of array
  * Return: void
  */
 void slide_left(int *line, size_t size)
 {
-	int i = 0;
-	int j = 0;
+	int lo = 0;
+	int hi;
 	int prev = line[0];
 
-	for (j = 1; j < (int)size; j++)
+	for (hi = 1; hi < (int)size; hi++)
 	{
-		if (line[j])
+		if (line[hi])
 		{
 			if (!prev)
-				prev = line[j];
-			else if (line[j] == prev)
+				prev = line[hi];
+			else if (line[hi] == prev)
 			{
-				line[i] = prev * 2;
-				i++;
+				line[lo] = prev * 2;
+				lo++;
 				prev = 0;
 			}
 			else
 			{
-				line[i] = prev;
-				i++;
-				prev = line[j];
+				line[lo] = prev;
+				lo++;
+				prev = line[hi];
 			}
 		}
 	}
 	if (prev)
-		line[i++] = prev;
+		line[lo++] = prev;
 
-	while (i < (int)size)
+	while (lo < (int)size)
 	{
-		line[i] = 0;
-		i++;
+		line[lo] = 0;
+		lo++;
 	}
 }
 
@@ -73,36 +72,36 @@ void slide_left(int *line, size_t size)
  */
 void slide_right(int *line, size_t size)
 {
-	int i = 0;
-	int j = size - 1;
-	int prev = line[i];
+	int lo = size - 2;
+	int hi = size - 1;
+	int prev = line[lo];
 
-	for (i = size - 2; i >= 0; i--)
+	for (lo = size - 2; lo >= 0; lo--)
 	{
-		if (line[i])
+		if (line[lo])
 		{
 			if (!prev)
-				prev = line[i];
-			else if (prev == line[i])
+				prev = line[lo];
+			else if (prev == line[lo])
 			{
-				line[j] = prev * 2;
-				j--;
+				line[hi] = prev * 2;
+				hi--;
 				prev = 0;
 			}
 			else
 			{
-				line[j] = prev;
-				j--;
-				prev = line[i];
+				line[hi] = prev;
+				hi--;
+				prev = line[lo];
 			}
 		}
 	}
 	if (prev)
-		line[j--] = prev;
+		line[hi--] = prev;
 
-	while (j >= 0)
+	while (hi >= 0)
 	{
-		line[j] = 0;
-		j--;
+		line[hi] = 0;
+		hi--;
 	}
 }
