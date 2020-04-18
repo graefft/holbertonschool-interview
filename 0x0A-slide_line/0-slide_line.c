@@ -92,6 +92,7 @@ void slide_right(int *line, size_t size)
 			{
 				line[hi] = prev;
 				hi--;
+				prev = line[lo];
 			}
 		}
 	}
