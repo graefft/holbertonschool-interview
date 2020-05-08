@@ -5,12 +5,14 @@ Problem from Holberton School's Interview Preparation curriculum
 
 ### Description
 Place N non-attacking queens on an NxN chessboard  
-Write program that solves the N queens problem
-* <strong>USAGE: nqueens N</strong>
+Write a program that solves the N queens problem
+* `USAGE: nqueens N`
 * N must be an integer greater or equal to 4
 * Only `sys` module is allowed for imports
-* Program should print every possible solution to the problem
-One solution per line  
+* Program should print every possible solution to the problem  
+* One solution per line  
+
+<strong>EXAMPLE:</strong>
 ```
 ./0-nqueens.py 4  
 [[0, 1], [1, 3], [2, 0], [3, 2]]  
