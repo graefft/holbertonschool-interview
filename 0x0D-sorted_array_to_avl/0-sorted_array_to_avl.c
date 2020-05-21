@@ -42,8 +42,6 @@ avl_t *rec_array_to_avl(int *array, int start, int end)
 
 	mid = start + (end - start) / 2;
 
-	printf("mid = %d\n\n", mid);
-
 	root = binary_tree_node(NULL, array[mid]);
 	if (!root)
 		return (NULL);

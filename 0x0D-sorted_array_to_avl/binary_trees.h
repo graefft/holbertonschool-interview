@@ -29,6 +29,6 @@ void binary_tree_print(const binary_tree_t *);
 
 avl_t *sorted_array_to_avl(int *array, size_t size);
 avl_t *rec_array_to_avl(int *array, int start, int end);
-avl_t *binary_tree_node(avl_t *parent, size_t value);
+avl_t *binary_tree_node(avl_t *parent, int value);
 
 #endif /**__BINARY_TREES_H__**/
