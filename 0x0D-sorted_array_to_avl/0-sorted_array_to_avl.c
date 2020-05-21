@@ -7,7 +7,7 @@
  * @value: value to insert in node
  * Return: pointer to new node
  */
-avl_t *binary_tree_node(avl_t *parent, size_t value)
+avl_t *binary_tree_node(avl_t *parent, int value)
 {
 	avl_t *new_node = NULL;
 
