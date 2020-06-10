@@ -12,7 +12,9 @@ def rain(walls):
 
     result = 0
 
+    # For every element in array
     for i in range(1, len(walls) - 1):
+
         # Find maximum element on left
         left = walls[i]
         for j in range(i):
