@@ -25,8 +25,8 @@ void swap(int *x, int *y)
 void heapify(int *array, size_t heap_size, int index, size_t size)
 {
 	size_t largest = index;
-	size_t left = 2 * index + 1;
-	size_t right = 2 * index + 2;
+	size_t left = (2 * index + 1);
+	size_t right = (2 * index + 2);
 
 	/* If left child is larger than root */
 	if (left < heap_size && array[left] > array[largest])
@@ -40,6 +40,8 @@ void heapify(int *array, size_t heap_size, int index, size_t size)
 	if ((int)largest != index)
 	{
 		swap(&array[index], &array[largest]);
+		if (array[index] != array[largest])
+			print_array(array, size);
 		heapify(array, heap_size, largest, size);
 	}
 }
@@ -55,7 +57,7 @@ void heap_sort(int *array, size_t size)
 
 	if (!array || size < 2)
 		return;
-
+	
 	for (i = size / 2 - 1; i >= 0; i--)
 		heapify(array, size, i, size);
 
