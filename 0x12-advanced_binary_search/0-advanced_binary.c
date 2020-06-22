@@ -13,6 +13,7 @@ int advanced_binary_recursion(int *array, int value, int lo, int hi)
 	int i = lo;
 	int mid = lo + ((hi - lo) / 2);
 
+	/* print current subarray */
 	printf("Searching in array: ");
 	while (i < hi)
 	{
@@ -21,23 +22,25 @@ int advanced_binary_recursion(int *array, int value, int lo, int hi)
 	}
 	printf("%d\n", array[i]);
 
+	/* found value, check if the value occurs earlier in array */
 	if (array[mid] == value)
 	{
 		if (array[mid - 1] == value)
-		{
-			hi = mid;
-			return (advanced_binary_recursion(array, value, lo, hi));
-		}
+			return (advanced_binary_recursion(array, value, lo, mid));
 		else
 			return (mid);
 	}
+	/* value not present in array */
 	if (lo == hi)
 		return (-1);
+	/* call function using right half of array */
 	if (array[mid] < value)
 		return (advanced_binary_recursion(array, value, mid + 1, hi));
+	/* call function using left half of array */
 	if (array[mid] > value)
 		return (advanced_binary_recursion(array, value, lo, mid));
-	return (mid);
+	/* something weird happened */
+	return (-1);
 }
 
 /**
