@@ -24,7 +24,7 @@ typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s heap_t;
 
 int heap_extract(heap_t **root);
-size_t tree_height(const binary_tree_t *tree);
+size_t binary_tree_height(const binary_tree_t *tree);
 int is_perfect_recursion(const binary_tree_t *tree, int depth, int level);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 void full_heapify(heap_t *node);
