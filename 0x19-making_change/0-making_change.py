@@ -8,7 +8,7 @@ needed to meet a given amount total.
 def makeChange(coins, total):
     '''return fewest number of coins needed'''
     if total <= 0:
-        return -1
+        return 0
     coins.sort(reverse=True)
     i = 0
     count = 0
