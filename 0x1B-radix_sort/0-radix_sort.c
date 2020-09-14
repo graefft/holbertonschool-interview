@@ -31,9 +31,8 @@ void radix_sort(int *array, size_t size)
 	int j, k, r, NOP = 0, divisor = 1, lar, pass;
 	size_t i;
 
-	if (!array || size < 1)
+	if (!array || size <= 1)
 		return;
-
 	lar = get_max(array, size);
 	while (lar > 0)
 	{
@@ -63,10 +62,7 @@ void radix_sort(int *array, size_t size)
 		for (i = 0; i < size; i++)
 		{
 			printf("%d", array[i]);
-			if (i < size - 1)
-				printf(", ");
-			else
-				printf("\n");
+			i < size - 1 ? printf(", ") : printf("\n");
 		}
 	}
 }
