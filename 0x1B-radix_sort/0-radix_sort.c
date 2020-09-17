@@ -14,12 +14,11 @@
  *
  * Return: void
  */
-void counting_sort_radix(int *array, size_t size, int digit)
+void counting_sort_radix(int *array, int size, int digit)
 {
-	int value, j;
+	int i, j, value;
 	int *output;
 	int count[BASE] = {0};
-	size_t i;
 
 	output = malloc(sizeof(int) * size);
 	if (!output)
@@ -44,7 +43,6 @@ void counting_sort_radix(int *array, size_t size, int digit)
 	/* copy sorted output array to array */
 	for (i = 0; i < size; i++)
 		array[i] = output[i];
-	print_array(array, size);
 	free(output);
 }
 
@@ -74,16 +72,15 @@ int find_max(int *array, size_t size)
  */
 void radix_sort(int *array, size_t size)
 {
-	int max, digit, *sorted;
+	int max, digit;
 
 	if (!array || size <= 1)
 		return;
 
-	sorted = malloc(sizeof(*sorted) * size);
-	if (!sorted)
-		return;
-
 	max = find_max(array, size);
 	for (digit = 1; max / digit > 0; digit *= BASE)
+	{
 		counting_sort_radix(array, size, digit);
+		print_array(array, size);
+	}
 }
