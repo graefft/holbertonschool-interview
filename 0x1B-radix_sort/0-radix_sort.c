@@ -28,7 +28,7 @@ void counting_sort_radix(int *array, size_t size, int digit)
 	/* store count of each character */
 	for (i = 0; i < size; i++)
 	{
-		value = (array[i] / digit) % BASE;
+		value = ((array[i] / digit) % BASE);
 		count[value]++;
 	}
 	/* change array to store actual position of character in output */
