@@ -16,7 +16,7 @@
  */
 void counting_sort_radix(int *array, size_t size, int digit)
 {
-	int value;
+	int value, j;
 	int *output;
 	int count[BASE] = {0};
 	size_t i;
@@ -36,10 +36,10 @@ void counting_sort_radix(int *array, size_t size, int digit)
 		count[i] += count[i - 1];
 
 	/* build output character array */
-	for (i = 0; i < size; i++)
+	for (j = size - 1; j >= 0; j--)
 	{
-		output[count[(array[i] / digit) % 10] - 1] = array[i];
-		--count[array[i] / digit % 10];
+		output[count[(array[j] / digit) % 10] - 1] = array[j];
+		count[(array[j] / digit) % 10]--;
 	}
 	/* copy sorted output array to array */
 	for (i = 0; i < size; i++)
