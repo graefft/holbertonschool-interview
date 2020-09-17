@@ -11,7 +11,6 @@
  * @array: pointer to array
  * @size: size of array
  * @digit: digit to sort
- * @sorted: array of sorted values
  *
  * Return: void
  */
@@ -22,8 +21,6 @@ void counting_sort_radix(int *array, size_t size, int digit)
 	int count[BASE] = {0};
 	size_t i;
 
-	if (!count)
-		return;
 	output = malloc(sizeof(int) * size);
 	if (!output)
 		return;
@@ -31,25 +28,23 @@ void counting_sort_radix(int *array, size_t size, int digit)
 	/* store count of each character */
 	for (i = 0; i < size; i++)
 	{
-		value = (array[i] / digit % BASE);
+		value = (array[i] / digit) % BASE;
 		count[value]++;
 	}
 	/* change array to store actual position of character in output */
-	for (i = 1; i <= max; i++)
+	for (i = 1; i < BASE; i++)
 		count[i] += count[i - 1];
 
-	print_array(count, max + 1);
-
 	/* build output character array */
-	for (j = 0; j < size; j++)
+	for (i = 0; i < size; i++)
 	{
-		output[count[array[i]] / digit % 10] = array[i];
-		count[array[i]]--;
+		output[count[(array[i] / digit) % 10] - 1] = array[i];
+		--count[array[i] / digit % 10];
 	}
 	/* copy sorted output array to array */
 	for (i = 0; i < size; i++)
 		array[i] = output[i];
-	free(count);
+	print_array(array, size);
 	free(output);
 }
 
@@ -80,7 +75,6 @@ int find_max(int *array, size_t size)
 void radix_sort(int *array, size_t size)
 {
 	int max, digit, *sorted;
-	unsigned int i = 1;
 
 	if (!array || size <= 1)
 		return;
@@ -91,9 +85,5 @@ void radix_sort(int *array, size_t size)
 
 	max = find_max(array, size);
 	for (digit = 1; max / digit > 0; digit *= BASE)
-	{
-		counting_sort_radix(array, size, digit, sorted);
-		print_array(array, size);
-	}
-	free(sorted);
+		counting_sort_radix(array, size, digit);
 }
