@@ -25,7 +25,7 @@ List *add_node_begin(List **list, char *str)
 	new_node->next = *list;
 	new_node->prev = NULL;
 	(*list)->prev = new_node;
-	
+
 	printf("string = %s\n", new_node->str);
 	return (new_node);
 }
