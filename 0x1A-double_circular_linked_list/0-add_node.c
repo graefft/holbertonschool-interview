@@ -35,9 +35,9 @@ List *add_node_begin(List **list, char *str)
 	}
 	else
 	{
-		*list = new_node;
 		new_node->prev = NULL;
 		new_node->next = NULL;
+		*list = new_node;
 	}
 	return (new_node);
 }
@@ -74,9 +74,9 @@ List *add_node_end(List **list, char *str)
 	}
 	else
 	{
-		*list = new_node;
 		new_node->prev = NULL;
 		new_node->next = NULL;
+		*list = new_node;
 	}
 	return (new_node);
 }
