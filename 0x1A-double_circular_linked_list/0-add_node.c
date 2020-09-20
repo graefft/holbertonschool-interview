@@ -9,12 +9,12 @@
  */
 List *add_node_begin(List **list, char *str)
 {
-	List *new_node, *tmp;
+	List *new_node;
 
 	if (!list || !str)
 		return (NULL);
 
-	new_node = malloc(sizeof(List));
+	new_node = malloc(sizeof(*new_node));
 	if (!new_node)
 	{
 		perror("malloc");
@@ -24,19 +24,16 @@ List *add_node_begin(List **list, char *str)
 
 	if (*list)
 	{
-		tmp = *list;
-		while (tmp->next && tmp->next != *list)
-			tmp = tmp->next;
-		tmp->next = new_node;
-		new_node->prev = tmp;
+		new_node->prev = (*list)->prev;
 		new_node->next = *list;
+		(*list)->prev->next = new_node;
 		(*list)->prev = new_node;
 		*list = new_node;
 	}
 	else
 	{
-		new_node->prev = NULL;
-		new_node->next = NULL;
+		new_node->prev = new_node;
+		new_node->next = new_node;
 		*list = new_node;
 	}
 	return (new_node);
@@ -57,26 +54,31 @@ List *add_node_end(List **list, char *str)
 	if (!list || !str)
 		return (NULL);
 
-	new_node = malloc(sizeof(List));
+	new_node = malloc(sizeof(*new_node));
 	if (!new_node)
 		return (NULL);
 	new_node->str = strdup(str);
+	if (!new_node->str)
+	{
+		free(new_node);
+		perror("strdup");
+		return (NULL);
+	}
+	new_node->next = new_node->prev = NULL;
 
 	if (*list)
 	{
-		tmp = *list;
-		while (tmp->next && tmp->next != *list)
-			tmp = tmp->next;
+		tmp = (*list)->prev;
 		tmp->next = new_node;
-		(*list)->prev = new_node;
 		new_node->prev = tmp;
 		new_node->next = *list;
+		(*list)->prev = new_node;
 	}
 	else
 	{
-		new_node->prev = NULL;
-		new_node->next = NULL;
 		*list = new_node;
+		new_node->prev = new_node;
+		new_node->next = new_node;
 	}
 	return (new_node);
 }
