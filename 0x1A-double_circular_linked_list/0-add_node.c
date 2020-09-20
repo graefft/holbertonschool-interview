@@ -21,6 +21,12 @@ List *add_node_begin(List **list, char *str)
 		return (NULL);
 	}
 	new_node->str = strdup(str);
+	if (!new_node->str)
+	{
+		free(new_node->str);
+		perror("strdup");
+		return (NULL);
+	}
 
 	if (*list)
 	{
