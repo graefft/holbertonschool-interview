@@ -11,6 +11,7 @@
  */
 int regex_match(char const *str, char const *pattern)
 {
-
+	if (!pattern || !str)
+		return (1);
 	return (1);
 }
