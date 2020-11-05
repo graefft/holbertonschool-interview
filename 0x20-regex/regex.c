@@ -1,7 +1,5 @@
 #include "regex.h"
 
-#define MAX_ERROR_MSG 0x1000
-
 /**
  * regex_match - checks whether a given pattern matches a given string
  *
@@ -12,6 +10,6 @@
 int regex_match(char const *str, char const *pattern)
 {
 	if (!pattern || !str)
-		return (1);
+		return (0);
 	return (1);
 }
